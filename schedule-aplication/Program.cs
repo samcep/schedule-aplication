@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using schedule_aplication;
+using schedule_aplication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<AplicationContext>(options =>
 });
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AplicationContext>().AddDefaultTokenProviders();
+builder.Services.AddTransient<IAuthService , AuthService>();
 
 var app = builder.Build();
 
